@@ -248,10 +248,16 @@ html.motion .hero__title .line:nth-child(3) > span { animation-delay: 0.24s; }
   .contact__intro { position: static; }
 }
 @media (max-width: 560px) {
-  .hero__visual { grid-column: 2 / -1; }
+  /* Phones: the portrait spans the full width of the screen, edge to edge. */
+  .hero__visual { grid-column: 1 / -1; margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter)); }
   .hero__title .line--indent { padding-left: 0.6em; }
+  .book__cover { max-width: 230px; }
+  .journal__image { max-width: 280px; margin-left: auto; margin-right: auto; }
   .videos__list { gap: 32px; }
-  .video { width: 100%; }
+  .video, .video:nth-child(2) { width: 100%; max-width: 300px; justify-self: center; }
+  .piece__image { max-width: 300px; margin: 0 auto; }
+  .speaking__list { flex-direction: column; align-items: center; gap: 12px; font-size: 1.2rem; }
+  .speaking__list li + li::before { display: none; }
 }
 
 .videos .frame__mark { display: none; }
