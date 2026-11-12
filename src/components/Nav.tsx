@@ -7,7 +7,7 @@ export const navLinks = [
   { label: 'About', to: '/#work' }, // the "A little about what I do" section on the homepage
   { label: 'Tech Portfolio', to: '/portfolio' },
   { label: 'Writing', to: '/writing' },
-  { label: 'More From Me', to: '/#more' },
+  { label: 'More From Me', to: '/more' },
   { label: 'Contact', to: '/#contact' },
 ];
 

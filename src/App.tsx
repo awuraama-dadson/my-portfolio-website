@@ -7,6 +7,7 @@ import { ScrollManager } from './components/ScrollManager';
 import Home from './pages/Home';
 import Writing from './pages/Writing';
 import Portfolio from './pages/Portfolio';
+import More from './pages/More';
 import NotFound from './pages/NotFound';
 
 export default function App() {
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="/about" element={<Navigate to="/#work" replace />} />
           <Route path="/writing" element={<Writing />} />
           <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/more" element={<More />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

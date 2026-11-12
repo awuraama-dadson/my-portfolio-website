@@ -24,6 +24,10 @@ export function Dimensions() {
             I've never fit neatly into one lane. These are the different ways I spend my curiosity, and the threads
             that tie them together.
           </p>
+          <a className="dimensions__cue" href="#engineer">
+            <span>Scroll to explore</span>
+            <span className="dimensions__cue-arrow" aria-hidden="true">↓</span>
+          </a>
         </Reveal>
       </div>
 
@@ -38,7 +42,7 @@ export function Dimensions() {
 
 function Engineer() {
   return (
-    <article className="dim dim--engineer" aria-labelledby="dim-engineer">
+    <article id="engineer" className="dim dim--engineer" aria-labelledby="dim-engineer">
       <div className="container dim__grid">
         <Reveal className="dim__text">
           <Eyebrow num="01">The Engineer</Eyebrow>
@@ -233,7 +237,7 @@ function Entrepreneur() {
           </Reveal>
           <Reveal delay={200} className="entre__links">
             <ArrowLink to="https://pluglie.com/">Visit Pluglie</ArrowLink>
-            <ArrowLink to="/#more">See what I've created</ArrowLink>
+            <ArrowLink to="/more">Explore my creations</ArrowLink>
           </Reveal>
         </div>
       </div>
