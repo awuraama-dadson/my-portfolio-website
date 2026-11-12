@@ -24,9 +24,9 @@
 .hero__title .line--indent { padding-left: 1.05em; }
 .hero__title em { font-style: italic; color: var(--taupe-deep); }
 
-html.motion .hero__title .line > span { transform: translateY(110%); animation: rise 1.3s var(--ease) forwards; }
-html.motion .hero__title .line:nth-child(2) > span { animation-delay: 0.12s; }
-html.motion .hero__title .line:nth-child(3) > span { animation-delay: 0.24s; }
+html.motion .hero__title .line > span { transform: translateY(110%); animation: rise 0.9s var(--ease) forwards; }
+html.motion .hero__title .line:nth-child(2) > span { animation-delay: 0.08s; }
+html.motion .hero__title .line:nth-child(3) > span { animation-delay: 0.16s; }
 @keyframes rise { to { transform: none; } }
 
 .hero__lower { max-width: 31rem; margin-top: clamp(36px, 5vw, 64px); }

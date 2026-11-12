@@ -10,18 +10,24 @@ interface ImageFrameProps {
   className?: string;
   position?: string;
   priority?: boolean;
+  /** Responsive sources, e.g. "/a-640.webp 640w, /a-1000.webp 1000w", with the matching sizes hint. */
+  srcSet?: string;
+  sizes?: string;
   delay?: number;
 }
 
 /** An image with a gentle reveal. With no src, renders a refined placeholder to be replaced later. */
-export function ImageFrame({ src, alt, ratio = '4 / 5', label, className = '', position, priority, delay }: ImageFrameProps) {
+export function ImageFrame({ src, alt, ratio = '4 / 5', label, className = '', position, priority, srcSet, sizes, delay }: ImageFrameProps) {
   return (
     <Reveal variant="image" delay={delay} className={`frame ${className}`} style={{ aspectRatio: ratio }}>
       {src ? (
         <img
           src={src}
+          srcSet={srcSet}
+          sizes={sizes}
           alt={alt}
           loading={priority ? 'eager' : 'lazy'}
+          {...(priority ? { fetchpriority: 'high' } : {})}
           decoding="async"
           draggable={false}
           style={position ? { objectPosition: position } : undefined}

@@ -21,7 +21,7 @@ export function Hero() {
             <span className="line"><span>&amp; <em>becoming.</em></span></span>
           </h1>
 
-          <Reveal delay={450} className="hero__lower">
+          <Reveal delay={150} className="hero__lower">
             <p className="hero__intro">
               I'm <span className="hero__name">Awuraama</span> Dadson:{' '}
               <strong>an engineer, author, writer and entrepreneur</strong> obsessed with personal development,
@@ -38,6 +38,8 @@ export function Hero() {
         <div className="hero__visual">
           <ImageFrame
             src={photos.hero}
+            srcSet="/images/hero-640.webp 640w, /images/hero-1000.webp 1000w"
+            sizes="(max-width: 560px) 100vw, (max-width: 900px) 80vw, 40vw"
             alt="Portrait of Awuraama Dadson"
             ratio="4 / 5"
             label="Portrait · 4:5"

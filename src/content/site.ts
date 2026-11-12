@@ -37,10 +37,10 @@ export const site = {
 
 /**
  * Photography. Drop your photos in /public/images and put the path here,
- * e.g. '/images/hero.jpg'. Empty strings show an elegant placeholder.
+ * e.g. '/images/hero-1000.webp'. Empty strings show an elegant placeholder.
  */
 export const photos = {
-  hero: '/images/hero.jpg', // portrait, tall (4:5), at least 1200px wide
+  hero: '/images/hero-1000.webp', // portrait, tall (4:5); a 640px-wide copy sits beside it for phones
 } as const;
 
 export type SocialKey = keyof typeof site.socials;
