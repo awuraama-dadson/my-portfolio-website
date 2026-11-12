@@ -8,6 +8,8 @@ interface ArrowLinkProps {
 }
 
 const isExternal = (to: string) => /^(https?:|mailto:)/.test(to);
+/** Pages served as static files rather than by the React app (e.g. the book site in public/book/). */
+const isStaticPage = (to: string) => to.startsWith('/book/');
 
 /** A quiet text link with an arrow. An empty `to` renders a "coming soon" placeholder. */
 export function ArrowLink({ to, children, className = '' }: ArrowLinkProps) {
@@ -29,6 +31,13 @@ export function ArrowLink({ to, children, className = '' }: ArrowLinkProps) {
   if (isExternal(to)) {
     return (
       <a className={cls} href={to} target={to.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
+        {inner}
+      </a>
+    );
+  }
+  if (isStaticPage(to)) {
+    return (
+      <a className={cls} href={to}>
         {inner}
       </a>
     );

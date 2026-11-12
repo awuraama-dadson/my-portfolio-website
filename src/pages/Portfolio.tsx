@@ -6,7 +6,7 @@ import { ImageFrame } from '../components/ImageFrame';
 import { Reveal } from '../components/Reveal';
 
 export default function Portfolio() {
-  usePageMeta('Tech Portfolio', 'Software engineering and frontend development portfolio of Awuraama Dadson: React, TypeScript, JavaScript projects and experience.');
+  usePageMeta('Tech Portfolio', 'The tech portfolio of Awuraama Dadson: websites, web applications and digital projects.');
   const featured = projects.filter((p) => p.image);
   const more = projects.filter((p) => !p.image);
 
@@ -16,14 +16,14 @@ export default function Portfolio() {
         <Reveal>
           <p className="mono-label">/ portfolio — software engineering</p>
           <h1 className="display-1">
-            Frontend, with an <em>engineer's eye.</em>
+            Where creativity <br />
+            <em>meets code.</em>
           </h1>
         </Reveal>
         <Reveal delay={200} className="studio__intro">
           <p>
-            I'm a frontend developer with a background in Chemical Engineering. I build websites and web applications
-            with React, TypeScript, JavaScript, HTML and CSS, deploy to Vercel and Render, and work in Git and GitHub.
-            I use AI tools such as Claude to build and learn faster, while learning the fundamentals underneath.
+            I'm a developer with an engineering background. I design and build websites and web applications that
+            are thoughtful, easy to use and made to last, and I'm always learning along the way.
           </p>
           <div className="studio__links">
             <ArrowLink to={site.socials.github}>GitHub</ArrowLink>
@@ -57,9 +57,11 @@ export default function Portfolio() {
                     {p.details.map((d) => <li key={d}>{d}</li>)}
                   </ul>
                 )}
-                <ul className="stack" aria-label="Built with">
-                  {p.stack.map((s) => <li key={s}>{s}</li>)}
-                </ul>
+                {p.stack && (
+                  <ul className="stack" aria-label="Built with">
+                    {p.stack.map((s) => <li key={s}>{s}</li>)}
+                  </ul>
+                )}
                 <div className="project__links">
                   {p.live && <ArrowLink to={p.live}>Live site</ArrowLink>}
                   {p.code && <ArrowLink to={p.code}>Code</ArrowLink>}
@@ -75,7 +77,7 @@ export default function Portfolio() {
               <p className="mono-label">{p.type}</p>
               <h3 className="mini__name">{p.name}</h3>
               <p>{p.description}</p>
-              <ul className="stack">{p.stack.map((s) => <li key={s}>{s}</li>)}</ul>
+              {p.stack && <ul className="stack">{p.stack.map((s) => <li key={s}>{s}</li>)}</ul>}
               <div className="project__links">
                 {p.live && <ArrowLink to={p.live}>Live app</ArrowLink>}
                 {p.code && <ArrowLink to={p.code}>Code</ArrowLink>}

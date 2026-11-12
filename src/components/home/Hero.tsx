@@ -23,13 +23,14 @@ export function Hero() {
 
           <Reveal delay={450} className="hero__lower">
             <p className="hero__intro">
-              I'm Awuraama Dadson: an engineer, author, writer and entrepreneur with a deep interest in ideas,
-              creativity, faith and intentional living. This is a home for what I build, what I write, and what I'm
+              I'm <span className="hero__name">Awuraama</span> Dadson:{' '}
+              <strong>an engineer, author, writer and entrepreneur</strong> obsessed with personal development,
+              growth, manifestation and intentional living. This is a home for what I build, what I write, and what I'm
               learning on the way to becoming.
             </p>
             <div className="hero__ctas">
               <ArrowLink to="/#work">Explore my world</ArrowLink>
-              <ArrowLink to="/about">Get to know me</ArrowLink>
+              <ArrowLink to="/#work">Get to know me</ArrowLink>
             </div>
           </Reveal>
         </div>
@@ -43,17 +44,11 @@ export function Hero() {
             priority
             className="hero__image"
           />
-          <p className="hero__caption">
-            <span>Awuraama Dadson</span>
-            <span>Tema, Ghana</span>
-          </p>
           <span className="hero__vertical" aria-hidden="true">A body of work, in progress</span>
         </div>
       </div>
 
       <div className="container hero__foot">
-        <p><span>Currently writing</span> The Becoming Letter</p>
-        <p><span>Currently building</span> for the web</p>
         <p className="hero__scroll" aria-hidden="true">Scroll</p>
       </div>
     </section>

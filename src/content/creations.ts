@@ -27,4 +27,12 @@ export const creations: Creation[] = [
     url: 'https://the-soft-abundance-affirmation-libr.vercel.app/',
     image: '/images/shot-affirmations.jpg',
   },
+  {
+    name: "Awuraama's Reads",
+    kind: 'Book recommendations',
+    description:
+      'Books that changed the way I think, live, love and grow, gathered across personal growth, mindset and manifestation, money, and love and relationships.',
+    url: 'https://awuraama-s-reads.vercel.app/',
+    image: '/images/shot-reads.jpg',
+  },
 ];

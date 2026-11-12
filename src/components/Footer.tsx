@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
-import { site, socialLabels, type SocialKey } from '../content/site';
-
-const footerSocials: SocialKey[] = ['instagram', 'youtube', 'linkedin', 'pinterest', 'substack'];
+import { site } from '../content/site';
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -25,7 +23,7 @@ export function Footer() {
             <p className="footer__heading">Explore</p>
             <ul>
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">About</Link></li>
+              <li><Link to="/#work">About</Link></li>
               <li><Link to="/writing">Writing</Link></li>
               <li><Link to="/portfolio">Tech Portfolio</Link></li>
               <li><Link to="/#more">More From Me</Link></li>
@@ -33,24 +31,6 @@ export function Footer() {
             </ul>
           </nav>
 
-          <div className="footer__col">
-            <p className="footer__heading">Elsewhere</p>
-            <ul>
-              {footerSocials.map((k) =>
-                site.socials[k] ? (
-                  <li key={k}>
-                    <a href={site.socials[k]} target="_blank" rel="noopener noreferrer">
-                      {socialLabels[k]}
-                    </a>
-                  </li>
-                ) : (
-                  <li key={k}>
-                    <span className="is-placeholder" title="Link coming soon">{socialLabels[k]}</span>
-                  </li>
-                ),
-              )}
-            </ul>
-          </div>
         </div>
 
         <div className="footer__bottom">

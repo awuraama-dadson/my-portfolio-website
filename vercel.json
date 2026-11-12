@@ -1,3 +1,16 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "redirects": [
+    { "source": "/book", "destination": "/book/", "permanent": true },
+    { "source": "/about", "destination": "/#work", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/book/", "destination": "/book/index.html" },
+    { "source": "/((?!api/|book/).*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/book/asset/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=86400" }]
+    }
+  ]
 }

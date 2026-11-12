@@ -46,7 +46,7 @@ export const enquiryTypes: EnquiryType[] = [
     hint: 'Guest pieces, features and publishing',
     messagePrompt: 'Share the opportunity and what you have in mind.',
     fields: [
-      { name: 'publication', label: 'Publication or platform', type: 'text', required: true },
+      { name: 'publication', label: 'Publication or platform', type: 'text' },
       { name: 'deadline', label: 'Deadline', type: 'date' },
     ],
   },

@@ -1,23 +1,27 @@
-/** Letters from The Becoming Letter (https://sheshares.substack.com). Newest first. */
+/**
+ * Saved letters from The Becoming Letter (https://sheshares.substack.com). Newest first.
+ * New letters appear on the site automatically from Substack (see src/hooks/useLetters.ts).
+ * This list is the instant-load fallback, and where you set each letter's theme label.
+ */
 export interface Letter {
   title: string;
   excerpt: string;
   date: string; // ISO date
   url: string;
   theme: string;
-  featured?: boolean; // shown on the homepage
+  /** First image from the article. Defaults to /images/letters/<slug>.webp */
+  image?: string;
 }
 
 const base = 'https://sheshares.substack.com/p/';
 
-export const letters: Letter[] = [
+const allLetters: Letter[] = [
   {
     title: "You are not a victim. You're the main character. Act like it!",
     excerpt: "It's time to get out of your own way.",
     date: '2026-11-06',
     url: base + 'you-are-not-a-victim-youre-the-main',
     theme: 'Mindset',
-    featured: true,
   },
   {
     title: "The Art of Enjoying Your Life While You're Still Becoming",
@@ -32,7 +36,6 @@ export const letters: Letter[] = [
     date: '2026-10-24',
     url: base + 'what-being-good-with-money-actually',
     theme: 'Money',
-    featured: true,
   },
   {
     title: 'The Law of Assumption: Manifesting 101',
@@ -40,7 +43,6 @@ export const letters: Letter[] = [
     date: '2026-10-17',
     url: base + 'the-law-of-assumption-manifesting',
     theme: 'Manifesting',
-    featured: true,
   },
   {
     title: "3 hills I'm willing to die on",
@@ -71,6 +73,12 @@ export const letters: Letter[] = [
     theme: 'Self-concept',
   },
 ];
+
+/** Each letter's image lives at public/images/letters/<url slug>.webp unless set explicitly. */
+export const letters: Letter[] = allLetters.map((l) => ({
+  ...l,
+  image: l.image ?? `/images/letters/${l.url.split('/p/')[1]}.webp`,
+}));
 
 export const formatDate = (iso: string) =>
   new Date(iso + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });

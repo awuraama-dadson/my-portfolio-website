@@ -13,7 +13,7 @@ export function Contact() {
             Let's <em>talk.</em>
           </h2>
           <p className="lead">
-            Choose what you're writing about, share a few details, and I'll take it from there.
+            Choose what you're writing about, share a few details and press send. Your message comes straight to my inbox, and I'll take it from there.
           </p>
           <div className="contact__direct">
             <p className="contact__direct-label">Or write directly</p>

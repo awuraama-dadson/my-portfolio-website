@@ -118,9 +118,75 @@ html.motion .nav__overlay:not([hidden]) { animation: page-in 0.5s var(--ease) bo
 .dim--creator .frame__label,
 .page--studio .frame__label { color: rgba(241, 234, 224, 0.45); }
 
+/* ---------- Follow along (socials, above the footer) ---------- */
+.follow { background: var(--ivory); padding: var(--section) 0; border-top: 1px solid var(--rule); }
+.follow__head {
+  display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: end;
+  margin-bottom: clamp(56px, 8vw, 110px);
+}
+.follow__head .display-2 { margin: 0; }
+.follow__lead { margin: 0; max-width: 28em; }
+
+.follow__list {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(32px, 5vw, 80px);
+  border-top: 1px solid var(--rule-strong);
+}
+.follow__list > li { border-bottom: 1px solid var(--rule); }
+
+.follow__item {
+  position: relative; display: grid; grid-template-columns: 34px 46px 1fr auto; align-items: center; gap: 18px;
+  padding: 26px 4px; color: var(--ink); text-decoration: none; isolation: isolate;
+}
+/* A soft wash that sweeps in from the left on hover. */
+.follow__item::before {
+  content: ''; position: absolute; inset: 0 -12px; z-index: -1; background: var(--cream);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.7s var(--ease);
+}
+.follow__item:hover::before, .follow__item:focus-visible::before { transform: scaleX(1); }
+.follow__item:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
+
+.follow__num { font-family: var(--serif); font-style: italic; font-size: 1.05rem; color: var(--accent); }
+.follow__icon {
+  width: 46px; height: 46px; display: grid; place-items: center;
+  border: 1px solid var(--rule-strong); border-radius: 50%; color: var(--ink-soft);
+  transition: background 0.5s var(--ease), color 0.5s var(--ease), border-color 0.5s var(--ease);
+}
+.follow__icon svg { width: 17px; height: 17px; fill: currentColor; }
+.follow__icon svg.is-stroke { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.follow__item:hover .follow__icon { background: var(--espresso); border-color: var(--espresso); color: var(--on-dark); }
+
+.follow__text { display: grid; gap: 4px; min-width: 0; }
+.follow__name {
+  font-family: var(--serif); font-weight: 400; font-size: clamp(1.7rem, 2.4vw, 2.3rem); line-height: 1;
+  transition: color 0.5s var(--ease);
+}
+.follow__item:hover .follow__name { font-style: italic; color: var(--taupe-deep); }
+.follow__handle {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; color: var(--ink-muted);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.follow__note { color: var(--taupe); }
+.follow__arrow {
+  font-size: 1.15rem; color: var(--ink-muted);
+  transition: transform 0.6s var(--ease), color 0.4s var(--ease);
+}
+.follow__item:hover .follow__arrow { transform: translate(4px, -4px); color: var(--ink); }
+
+@media (max-width: 960px) {
+  .follow__head { grid-template-columns: 1fr; gap: 28px; }
+  .follow__list { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .follow__item { grid-template-columns: 40px 1fr auto; gap: 14px; padding: 22px 0; }
+  .follow__num { display: none; }
+  .follow__icon { width: 40px; height: 40px; }
+  .follow__note { display: none; }
+}
+
 /* ---------- Footer ---------- */
 .footer { background: var(--espresso); color: var(--on-dark-soft); padding: clamp(80px, 10vw, 140px) 0 36px; }
-.footer__top { display: grid; grid-template-columns: 1.8fr 1fr 1fr; gap: 56px; padding-bottom: clamp(64px, 8vw, 110px); border-bottom: 1px solid var(--on-dark-rule); }
+.footer__top { display: grid; grid-template-columns: 1.8fr 1fr; gap: 56px; padding-bottom: clamp(64px, 8vw, 110px); border-bottom: 1px solid var(--on-dark-rule); }
 .footer__name {
   margin: 0 0 22px; color: var(--on-dark);
   font-family: var(--serif); font-weight: 300; font-size: clamp(2.8rem, 5.4vw, 4.8rem); line-height: 0.95; letter-spacing: -0.02em;
@@ -209,7 +275,6 @@ html.motion .fields--extra { animation: fields-in 0.7s var(--ease) both; }
   :root { --nav-h: 72px; }
   .wordmark { font-size: 0.86rem; letter-spacing: 0.24em; }
   .wordmark__last { font-size: 1.04rem; letter-spacing: 0.12em; }
-  .footer__top { grid-template-columns: 1fr 1fr; }
-  .footer__brand { grid-column: 1 / -1; }
+  .footer__top { grid-template-columns: 1fr; }
   .types, .fields { grid-template-columns: 1fr; }
 }

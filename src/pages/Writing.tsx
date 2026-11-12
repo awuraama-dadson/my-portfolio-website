@@ -1,5 +1,6 @@
 import { usePageMeta } from '../hooks/usePageMeta';
-import { letters, formatDate } from '../content/letters';
+import { formatDate } from '../content/letters';
+import { useLetters } from '../hooks/useLetters';
 import { site } from '../content/site';
 import { ArrowLink } from '../components/ArrowLink';
 import { Eyebrow } from '../components/Eyebrow';
@@ -8,7 +9,7 @@ import { Reveal } from '../components/Reveal';
 
 export default function Writing() {
   usePageMeta('Writing', 'The Becoming Letter and selected writing by Awuraama Dadson, on personal development, wealth mindset, self-concept and intentional living.');
-  const [latest, ...rest] = letters;
+  const [latest, ...rest] = useLetters();
 
   return (
     <div className="writing">
@@ -21,7 +22,7 @@ export default function Writing() {
         </Reveal>
         <Reveal delay={200} className="writing__dek">
           <p className="lead">
-            Letters on personal development, wealth mindset, self-concept, finances, intentional living, and the art
+            Letters on personal development, mindset, self-concept, intentional living and the art
             of enjoying your life while you're still becoming. Published on Substack.
           </p>
           <ArrowLink to={site.socials.substack}>Subscribe on Substack</ArrowLink>
@@ -29,7 +30,13 @@ export default function Writing() {
       </header>
 
       <section className="container" aria-label="Latest letter">
-        <Reveal className="feature">
+        <Reveal className={`feature${latest.image ? ' feature--image' : ''}`}>
+          {latest.image && (
+            <a href={latest.url} target="_blank" rel="noopener noreferrer" className="feature__image" tabIndex={-1} aria-hidden="true">
+              <ImageFrame src={latest.image} alt="" ratio="4 / 3" />
+            </a>
+          )}
+          <div className="feature__body">
           <p className="feature__label">The latest letter</p>
           <p className="journal__meta">
             <span>{latest.theme}</span>
@@ -40,6 +47,7 @@ export default function Writing() {
           </h2>
           <p className="feature__excerpt">{latest.excerpt}</p>
           <ArrowLink to={latest.url}>Read the letter</ArrowLink>
+          </div>
         </Reveal>
       </section>
 
@@ -52,6 +60,7 @@ export default function Writing() {
             <li key={l.url}>
               <Reveal>
                 <a className="archive__item" href={l.url} target="_blank" rel="noopener noreferrer">
+                  {l.image && <img className="archive__thumb" src={l.image} alt="" loading="lazy" decoding="async" />}
                   <time dateTime={l.date}>{formatDate(l.date)}</time>
                   <span className="archive__theme">{l.theme}</span>
                   <span className="archive__name">{l.title}</span>
@@ -66,7 +75,7 @@ export default function Writing() {
 
       <section className="writing__book">
         <div className="container writing__book-grid">
-          <a href={site.book.url} target="_blank" rel="noopener noreferrer" className="writing__cover" aria-label="Discover The Master Manifester">
+          <a href={site.book.url} className="writing__cover" aria-label="Discover The Master Manifester">
             <ImageFrame src={site.book.cover} alt="The Master Manifester book cover" ratio="2 / 3" />
           </a>
           <Reveal>

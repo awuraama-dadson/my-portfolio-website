@@ -4,15 +4,15 @@ import { enquiryTypes, type ExtraField } from '../content/contact';
 import { site } from '../content/site';
 
 /**
- * Context-aware contact form.
- * - If VITE_FORM_ENDPOINT is set (e.g. a Formspree URL), messages are POSTed there as JSON.
- * - Otherwise, the visitor's email app opens with the message fully written, ready to send.
+ * Context-aware contact form. Messages are sent through Web3Forms (web3forms.com), which emails them
+ * to the address the access key was created with. The key is meant to be public, so it lives here.
  */
-const ENDPOINT = (import.meta.env.VITE_FORM_ENDPOINT as string | undefined)?.trim();
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+const WEB3FORMS_ACCESS_KEY = '98474d37-0627-43f0-93de-da77359ac877';
 
 type Values = Record<string, string>;
 type Errors = Record<string, string>;
-type Status = 'idle' | 'sending' | 'sent' | 'mailto' | 'error';
+type Status = 'idle' | 'sending' | 'sent' | 'error';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -80,25 +80,21 @@ export function ContactForm() {
     const data = payload();
     const subject = `${data.enquiry} — ${data.name}`;
 
-    if (!ENDPOINT) {
-      const body = Object.entries(data)
-        .filter(([k]) => k !== 'message')
-        .map(([k, v]) => `${k.charAt(0).toUpperCase() + k.slice(1)}: ${v}`)
-        .join('\n');
-      const href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`${body}\n\n${data.message}`)}`;
-      window.location.href = href;
-      setStatus('mailto');
-      return;
-    }
-
     try {
       setStatus('sending');
-      const res = await fetch(ENDPOINT, {
+      const res = await fetch(WEB3FORMS_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ ...data, _subject: subject, _replyto: data.email }),
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `New enquiry: ${subject}`,
+          from_name: `${data.name} via awuraamadadson site`,
+          replyto: data.email, // so pressing Reply in your inbox answers the sender
+          ...data,
+        }),
       });
-      if (!res.ok) throw new Error(String(res.status));
+      const result = (await res.json().catch(() => ({}))) as { success?: boolean };
+      if (!res.ok || !result.success) throw new Error(String(res.status));
       setStatus('sent');
     } catch {
       setStatus('error');
@@ -112,25 +108,13 @@ export function ContactForm() {
     setStatus('idle');
   };
 
-  if (status === 'sent' || status === 'mailto') {
+  if (status === 'sent') {
     const first = values.name?.trim().split(' ')[0];
     return (
       <div className="form-done" role="status" aria-live="polite">
         <p className="form-done__mark" aria-hidden="true">✦</p>
-        {status === 'sent' ? (
-          <>
-            <h3 className="form-done__title">Thank you{first ? `, ${first}` : ''}.</h3>
-            <p>Your message has been sent. I'll reply to {values.email} as soon as I can.</p>
-          </>
-        ) : (
-          <>
-            <h3 className="form-done__title">Almost there{first ? `, ${first}` : ''}.</h3>
-            <p>
-              Your email app should now be open with your message written out. Just press send. If nothing opened,
-              you can email me directly at <a href={`mailto:${site.email}`}>{site.email}</a>.
-            </p>
-          </>
-        )}
+        <h3 className="form-done__title">Thank you{first ? `, ${first}` : ''}.</h3>
+        <p>Your message has been sent. I'll reply to {values.email} as soon as I can.</p>
         <button type="button" className="text-button" onClick={reset}>Write another message</button>
       </div>
     );
@@ -257,7 +241,6 @@ export function ContactForm() {
         <button type="submit" className="button" disabled={status === 'sending'}>
           {status === 'sending' ? 'Sending…' : 'Send message'}
         </button>
-        {!ENDPOINT && <p className="form__note">This opens your email app with your message ready to send.</p>}
       </div>
     </form>
   );
