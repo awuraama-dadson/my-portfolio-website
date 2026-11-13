@@ -1,0 +1,37 @@
+name: Update letters
+
+# Every hour, refresh the saved copy of the latest Substack letters.
+# A change is committed to main, which redeploys the site.
+on:
+  schedule:
+    - cron: '47 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-letters
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Fetch latest letters
+        run: node scripts/update-letters.ts
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- src/content/letters.feed.ts; then
+            echo "No new letters."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/content/letters.feed.ts
+          git commit -m "Update latest letters"
+          git push

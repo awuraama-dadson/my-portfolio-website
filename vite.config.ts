@@ -4,20 +4,24 @@ import { fetchSubstackLetters } from './src/lib/substack';
 import { fetchYouTubeVideos } from './src/lib/youtube';
 import { bookHostPath } from './src/lib/bookDomain';
 
-/** Serves a JSON feed at `path` during `npm run dev`, mirroring the Vercel functions in api/. */
+/** Serves a JSON feed at `path` during `npm run dev` and `npm run preview`, mirroring the Vercel functions in api/. */
 function feedApi(path: string, load: () => Promise<unknown>): Plugin {
+  const handler = async (_req: unknown, res: { setHeader(k: string, v: string): void; statusCode: number; end(body: string): void }) => {
+    res.setHeader('Content-Type', 'application/json');
+    try {
+      res.end(JSON.stringify(await load()));
+    } catch (err) {
+      res.statusCode = 502;
+      res.end(JSON.stringify({ error: String(err) }));
+    }
+  };
   return {
     name: `feed-api:${path}`,
     configureServer(server) {
-      server.middlewares.use(path, async (_req, res) => {
-        res.setHeader('Content-Type', 'application/json');
-        try {
-          res.end(JSON.stringify(await load()));
-        } catch (err) {
-          res.statusCode = 502;
-          res.end(JSON.stringify({ error: String(err) }));
-        }
-      });
+      server.middlewares.use(path, handler);
+    },
+    configurePreviewServer(server) {
+      server.middlewares.use(path, handler);
     },
   };
 }

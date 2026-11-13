@@ -9,16 +9,22 @@
   border-bottom: 1px solid var(--rule);
 }
 .writing__dek .arrow-link { margin-top: 30px; }
-.feature { padding: clamp(64px, 8vw, 120px) 0; border-bottom: 1px solid var(--rule); max-width: 1040px; }
+.feature { padding: clamp(48px, 6vw, 88px) 0; border-bottom: 1px solid var(--rule); }
+.feature__body {
+  max-width: 920px; margin: 0 auto; text-align: center;
+  padding: clamp(48px, 7vw, 104px) clamp(24px, 6vw, 96px);
+  background: var(--sand); outline: 1px solid var(--rule-strong); outline-offset: -14px;
+}
+.feature__envelope {
+  display: block; width: 44px; height: auto; margin: 0 auto 16px; overflow: visible;
+  fill: none; stroke: var(--accent); stroke-width: 1.1; stroke-linejoin: round; stroke-linecap: round;
+}
+.feature__envelope .feature__seal { fill: var(--accent); stroke: none; }
 .feature__label { margin: 0 0 28px; font-size: 0.64rem; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent); }
-.feature .journal__meta { justify-content: flex-start; gap: 28px; margin-bottom: 18px; }
+.feature .journal__meta { justify-content: center; gap: 28px; margin-bottom: 22px; }
 .feature__title { margin: 0 0 24px; font-family: var(--serif); font-weight: 300; font-size: clamp(2.5rem, 5.4vw, 5.2rem); line-height: 1.02; letter-spacing: -0.02em; }
 .feature__title a { text-decoration: none; transition: color 0.5s var(--ease); }
 .feature__title a:hover { color: var(--taupe-deep); }
-.feature--image { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: center; max-width: none; }
-.feature__image { display: block; overflow: hidden; }
-.feature__image img { transition: transform 1.2s var(--ease); }
-.feature__image:hover img { transform: scale(1.04); }
 .feature__excerpt { margin: 0 0 36px; font-family: var(--serif); font-style: italic; font-size: clamp(1.25rem, 2vw, 1.55rem); color: var(--ink-soft); }
 
 .archive { padding-top: clamp(64px, 8vw, 120px); padding-bottom: var(--section); }
@@ -26,13 +32,11 @@
 .archive__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
 .archive__more { margin-top: clamp(32px, 4vw, 48px); }
 .archive__item {
-  display: grid; grid-template-columns: 88px 150px 140px 1fr 32px;
-  grid-template-areas: 'thumb date theme name arrow' 'thumb . . excerpt .';
+  display: grid; grid-template-columns: 150px 140px 1fr 32px;
+  grid-template-areas: 'date theme name arrow' '. . excerpt .';
   column-gap: 24px; row-gap: 8px; align-items: baseline;
   padding: 30px 0; border-bottom: 1px solid var(--rule); text-decoration: none;
 }
-.archive__thumb { grid-area: thumb; align-self: start; width: 88px; aspect-ratio: 4 / 3; object-fit: cover; display: block; transition: opacity 0.5s var(--ease); }
-.archive__item:hover .archive__thumb { opacity: 0.85; }
 .archive__item time { grid-area: date; font-family: var(--mono); font-size: 0.68rem; color: var(--ink-muted); }
 .archive__theme { grid-area: theme; font-size: 0.64rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); }
 .archive__name { grid-area: name; font-family: var(--serif); font-size: clamp(1.45rem, 2.2vw, 1.9rem); line-height: 1.15; transition: color 0.5s var(--ease); }
@@ -48,7 +52,7 @@
 .writing__book-copy { margin: 28px 0 36px; color: var(--ink-soft); line-height: 1.8; max-width: 30em; }
 
 /* ---------- Portfolio (the studio) ---------- */
-html.is-studio, html.is-studio body, .page--studio { background: #1F1B18; color: var(--on-dark); }
+html.is-studio, html.is-studio body, .page--studio { background: var(--studio); color: var(--on-dark); }
 .studio { --s-rule: rgba(241, 234, 224, 0.12); padding-bottom: 8px; }
 .studio .display-1 em, .studio .display-2 em { color: var(--accent-light); }
 .mono-label { margin: 0 0 26px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em; color: var(--accent-light); }
@@ -115,16 +119,13 @@ html.is-studio, html.is-studio body, .page--studio { background: #1F1B18; color:
 @media (max-width: 960px) {
   .writing__head { grid-template-columns: 1fr; gap: 28px; }
   .writing__book-grid { grid-template-columns: 1fr; }
-  .feature--image { grid-template-columns: 1fr; }
-  .feature__image { max-width: 520px; }
   .writing__cover { max-width: 300px; }
   .project, .project--rev { grid-template-columns: 1fr; }
   .project--rev .project__media { order: 0; }
   .mini-projects { grid-template-columns: 1fr; }
 }
 @media (max-width: 720px) {
-  .archive__item { grid-template-columns: 72px 1fr auto; column-gap: 16px; grid-template-areas: 'thumb date theme' 'thumb name name' 'thumb excerpt excerpt'; }
-  .archive__thumb { width: 72px; }
+  .archive__item { grid-template-columns: 1fr auto; column-gap: 16px; grid-template-areas: 'date theme' 'name name' 'excerpt excerpt'; }
   .archive__theme { text-align: right; }
   .archive__arrow { display: none; }
   .skills__row, .role { grid-template-columns: 1fr; gap: 8px; }
@@ -132,5 +133,4 @@ html.is-studio, html.is-studio body, .page--studio { background: #1F1B18; color:
 @media (max-width: 560px) {
   /* Phones: a smaller, centred book cover. */
   .writing__cover { max-width: 230px; width: 100%; margin: 0 auto; }
-  .feature__image { max-width: 280px; width: 100%; margin: 0 auto; }
 }

@@ -31,23 +31,26 @@ export default function Writing() {
       </header>
 
       <section className="container" aria-label="Latest letter">
-        <Reveal className={`feature${latest.image ? ' feature--image' : ''}`}>
-          {latest.image && (
-            <a href={latest.url} target="_blank" rel="noopener noreferrer" className="feature__image" tabIndex={-1} aria-hidden="true">
-              <ImageFrame src={latest.image} alt="" ratio="4 / 3" />
-            </a>
-          )}
+        <Reveal className="feature">
           <div className="feature__body">
-          <p className="feature__label">The latest letter</p>
-          <p className="journal__meta">
-            <span>{latest.theme}</span>
-            <time dateTime={latest.date}>{formatDate(latest.date)}</time>
-          </p>
-          <h2 className="feature__title">
-            <a href={latest.url} target="_blank" rel="noopener noreferrer">{latest.title}</a>
-          </h2>
-          <p className="feature__excerpt">{latest.excerpt}</p>
-          <ArrowLink to={latest.url}>Read the letter</ArrowLink>
+            <p className="feature__label">
+              <svg className="feature__envelope" viewBox="0 0 40 28" aria-hidden="true">
+                <rect x="1" y="1" width="38" height="26" rx="1.5" />
+                <path d="M1.5 2 20 16.5 38.5 2" />
+                <path d="M1.5 26.5 15 12.5M38.5 26.5 25 12.5" />
+                <circle cx="20" cy="16.5" r="2.6" className="feature__seal" />
+              </svg>
+              The latest letter
+            </p>
+            <p className="journal__meta">
+              <span>{latest.theme}</span>
+              <time dateTime={latest.date}>{formatDate(latest.date)}</time>
+            </p>
+            <h2 className="feature__title">
+              <a href={latest.url} target="_blank" rel="noopener noreferrer">{latest.title}</a>
+            </h2>
+            <p className="feature__excerpt">{latest.excerpt}</p>
+            <ArrowLink to={latest.url}>Read the letter</ArrowLink>
           </div>
         </Reveal>
       </section>
@@ -61,7 +64,6 @@ export default function Writing() {
             <li key={l.url}>
               <Reveal>
                 <a className="archive__item" href={l.url} target="_blank" rel="noopener noreferrer">
-                  {l.image && <img className="archive__thumb" src={l.image} alt="" loading="lazy" decoding="async" />}
                   <time dateTime={l.date}>{formatDate(l.date)}</time>
                   <span className="archive__theme">{l.theme}</span>
                   <span className="archive__name">{l.title}</span>

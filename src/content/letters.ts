@@ -9,13 +9,18 @@ export interface Letter {
   date: string; // ISO date
   url: string;
   theme: string;
-  /** First image from the article. Defaults to /images/letters/<slug>.webp */
-  image?: string;
 }
 
 const base = 'https://sheshares.substack.com/p/';
 
-const allLetters: Letter[] = [
+export const letters: Letter[] = [
+  {
+    title: 'The Psychology Of Lucky People',
+    excerpt: "Luck isn't random, it's engineered.",
+    date: '2026-11-12',
+    url: base + 'the-psychology-of-lucky-people',
+    theme: 'Mindset',
+  },
   {
     title: "You are not a victim. You're the main character. Act like it!",
     excerpt: "It's time to get out of your own way.",
@@ -73,12 +78,6 @@ const allLetters: Letter[] = [
     theme: 'Self-concept',
   },
 ];
-
-/** Each letter's image lives at public/images/letters/<url slug>.webp unless set explicitly. */
-export const letters: Letter[] = allLetters.map((l) => ({
-  ...l,
-  image: l.image ?? `/images/letters/${l.url.split('/p/')[1]}.webp`,
-}));
 
 export const formatDate = (iso: string) =>
   new Date(iso + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });

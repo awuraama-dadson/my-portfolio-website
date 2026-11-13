@@ -10,7 +10,6 @@ export interface FeedLetter {
   excerpt: string;
   date: string; // ISO date (YYYY-MM-DD)
   url: string;
-  image?: string;
 }
 
 const decode = (s: string) =>
@@ -30,26 +29,17 @@ const tag = (xml: string, name: string) => {
   return m ? decode(m[1]) : '';
 };
 
-/** Ask Substack's image CDN for a web-sized WebP instead of the full original. */
-const sizeImage = (url: string) =>
-  url.includes('substackcdn.com/image/fetch/') ? url.replace(/,f_auto,/, ',w_900,c_limit,f_webp,') : url;
-
 export function parseSubstackFeed(xml: string): FeedLetter[] {
   const items = xml.match(/<item>[\s\S]*?<\/item>/g) ?? [];
   return items
     .map((item) => {
       const url = tag(item, 'link');
       const pub = new Date(tag(item, 'pubDate'));
-      // The cover image; if a post has none, fall back to the first image in its body.
-      const enclosure = item.match(/<enclosure[^>]+url="([^"]+)"/)?.[1];
-      const firstImg = tag(item, 'content:encoded').match(/<img[^>]+src="([^"]+)"/)?.[1];
-      const image = enclosure ?? firstImg;
       return {
         title: tag(item, 'title'),
         excerpt: tag(item, 'description'),
         date: isNaN(pub.getTime()) ? '' : pub.toISOString().slice(0, 10),
         url,
-        image: image ? sizeImage(decode(image)) : undefined,
       };
     })
     .filter((l) => l.url && l.title);

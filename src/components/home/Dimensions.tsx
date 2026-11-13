@@ -115,42 +115,52 @@ function Writer() {
   const featured = useLetters().slice(0, 3);
   return (
     <article className="dim dim--writer" aria-labelledby="dim-writer">
-      <div className="container">
-        <div className="writer__head">
+      <div className="container writer">
+        <figure className="writer__photo">
+          <ImageFrame
+            src="/images/writing-desk.jpg"
+            srcSet="/images/writing-desk-800.jpg 800w, /images/writing-desk.jpg 1400w"
+            sizes="(max-width: 960px) 90vw, 40vw"
+            alt="Awuraama's laptop open on a café table, mid-draft of a Becoming Letter on Substack"
+            ratio="3 / 4"
+          />
+          <figcaption>The Making of a Letter</figcaption>
+        </figure>
+
+        <div className="writer__body">
           <Reveal>
             <Eyebrow num="03">The Writer</Eyebrow>
             <h3 id="dim-writer" className="display-3">
               The Becoming <em>Letter</em>
             </h3>
-          </Reveal>
-          <Reveal delay={150}>
-            <p className="lead">
+            <p className="lead writer__lead">
               Letters on personal development, mindset, self-concept, intentional living and the art
               of becoming.
             </p>
           </Reveal>
-        </div>
 
-        <div className="journal">
-          {featured.map((l, i) => (
-            <Reveal key={l.url} delay={i * 120} className="journal__item">
-              {l.image && <ImageFrame src={l.image} alt="" ratio="4 / 3" className="journal__image" delay={i * 120} />}
-              <p className="journal__meta">
-                <span>{l.theme}</span>
-                <time dateTime={l.date}>{formatDate(l.date)}</time>
-              </p>
-              <h4 className="journal__title">
-                <a href={l.url} target="_blank" rel="noopener noreferrer">{l.title}</a>
-              </h4>
-              <p className="journal__excerpt">{l.excerpt}</p>
-              <span className="journal__read">Read on Substack</span>
-            </Reveal>
-          ))}
-        </div>
+          <ol className="letters">
+            {featured.map((l, i) => (
+              <li key={l.url}>
+                <Reveal delay={i * 120} className="letters__item">
+                  <p className="journal__meta">
+                    <span>{l.theme}</span>
+                    <time dateTime={l.date}>{formatDate(l.date)}</time>
+                  </p>
+                  <h4 className="letters__title">
+                    <a href={l.url} target="_blank" rel="noopener noreferrer">{l.title}</a>
+                  </h4>
+                  <p className="letters__excerpt">{l.excerpt}</p>
+                  <span className="letters__arrow" aria-hidden="true">→</span>
+                </Reveal>
+              </li>
+            ))}
+          </ol>
 
-        <Reveal className="dim__cta">
-          <ArrowLink to="/writing">Read The Becoming Letter</ArrowLink>
-        </Reveal>
+          <Reveal className="dim__cta">
+            <ArrowLink to="/writing">Read The Becoming Letter</ArrowLink>
+          </Reveal>
+        </div>
       </div>
     </article>
   );
@@ -186,9 +196,9 @@ const fallbackImage = (fallback: string) => (e: SyntheticEvent<HTMLImageElement>
   if (img.src !== fallback) img.src = fallback;
 };
 
-/** The two newest long-form videos, straight from the YouTube feed; quiet placeholders until they load. */
+/** The two newest long-form videos, straight from the YouTube feed, with the newest second; quiet placeholders until they load. */
 function VideoCards() {
-  const videos = useVideos().slice(0, 2);
+  const videos = useVideos().slice(0, 2).reverse();
 
   return (
     <div className="videos">

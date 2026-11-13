@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "node scripts/update-letters.ts && tsc --noEmit && vite build",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview",
-    "update-videos": "node scripts/update-videos.ts"
+    "update-videos": "node scripts/update-videos.ts",
+    "update-letters": "node scripts/update-letters.ts"
   },
   "dependencies": {
     "react": "18.3.1",

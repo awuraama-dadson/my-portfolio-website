@@ -38,10 +38,17 @@ rather write directly.
 
 ## The Becoming Letter (automatic)
 
-The site reads the Substack RSS feed through `/api/letters` (`api/letters.ts` on Vercel, mirrored in `vite.config.ts`
-for `npm run dev`). Vercel caches it for 15 minutes, so a new post shows up within about 15 minutes with no redeploy.
-Each letter's title, excerpt, date and cover image come from Substack. `src/content/letters.ts` is the instant-load
-fallback and supplies theme labels (new posts show "Letter" until one is added).
+New letters reach the site in two ways, so the "latest letter" is never out of date:
+
+1. **Saved copy (works on any host, including Render).** `scripts/update-letters.ts` saves the Substack feed into
+   `src/content/letters.feed.ts`. It runs every hour from `.github/workflows/update-letters.yml` (a change is committed
+   to main, which redeploys the site) and before every `npm run build`. Run it by hand with `npm run update-letters`.
+2. **Live feed (Vercel only).** On Vercel, `/api/letters` (`api/letters.ts`) reads Substack directly, so new posts show
+   within about 15 minutes. `npm run dev` and `npm run preview` serve the same feed locally. Static hosts such as
+   Render can't run it, and the site falls back to the saved copy.
+
+Each letter's title, excerpt and date come from Substack (letter images aren't used). `src/content/letters.ts` only
+supplies theme labels (new posts show "Letter" until one is added) and keeps older letters the feed no longer lists.
 
 ## The book site (awuraamadadsonbook.com)
 

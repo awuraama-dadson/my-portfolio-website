@@ -122,21 +122,21 @@ html.motion .nav__overlay:not([hidden]) { animation: page-in 0.5s var(--ease) bo
 .follow { background: var(--ivory); padding: var(--section) 0; border-top: 1px solid var(--rule); }
 .follow__head {
   display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: end;
-  margin-bottom: clamp(56px, 8vw, 110px);
+  margin-bottom: clamp(40px, 5vw, 64px);
 }
 .follow__head .display-2 { margin: 0; }
 .follow__lead { margin: 0; max-width: 28em; }
 
 .follow__list {
   list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(32px, 5vw, 80px);
+  display: grid; grid-template-columns: repeat(3, 1fr); column-gap: clamp(24px, 3vw, 48px);
   border-top: 1px solid var(--rule-strong);
 }
 .follow__list > li { border-bottom: 1px solid var(--rule); }
 
 .follow__item {
-  position: relative; display: grid; grid-template-columns: 34px 46px 1fr auto; align-items: center; gap: 18px;
-  padding: 26px 4px; color: var(--ink); text-decoration: none; isolation: isolate;
+  position: relative; display: grid; grid-template-columns: 30px 1fr auto; align-items: center; gap: 14px;
+  padding: 16px 4px; color: var(--ink); text-decoration: none; isolation: isolate;
 }
 /* A soft wash that sweeps in from the left on hover. */
 .follow__item::before {
@@ -146,49 +146,50 @@ html.motion .nav__overlay:not([hidden]) { animation: page-in 0.5s var(--ease) bo
 .follow__item:hover::before, .follow__item:focus-visible::before { transform: scaleX(1); }
 .follow__item:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
 
-.follow__num { font-family: var(--serif); font-style: italic; font-size: 1.05rem; color: var(--accent); }
+.follow__num, .follow__note { display: none; }
 .follow__icon {
-  width: 46px; height: 46px; display: grid; place-items: center;
+  width: 30px; height: 30px; display: grid; place-items: center;
   border: 1px solid var(--rule-strong); border-radius: 50%; color: var(--ink-soft);
   transition: background 0.5s var(--ease), color 0.5s var(--ease), border-color 0.5s var(--ease);
 }
-.follow__icon svg { width: 17px; height: 17px; fill: currentColor; }
+.follow__icon svg { width: 13px; height: 13px; fill: currentColor; }
 .follow__icon svg.is-stroke { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .follow__item:hover .follow__icon { background: var(--espresso); border-color: var(--espresso); color: var(--on-dark); }
 
 .follow__text { display: grid; gap: 4px; min-width: 0; }
 .follow__name {
-  font-family: var(--serif); font-weight: 400; font-size: clamp(1.7rem, 2.4vw, 2.3rem); line-height: 1;
+  font-family: var(--serif); font-weight: 400; font-size: clamp(1.2rem, 1.4vw, 1.4rem); line-height: 1;
   transition: color 0.5s var(--ease);
 }
 .follow__item:hover .follow__name { font-style: italic; color: var(--taupe-deep); }
 .follow__handle {
-  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; color: var(--ink-muted);
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; color: var(--ink-muted);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.follow__note { color: var(--taupe); }
 .follow__arrow {
-  font-size: 1.15rem; color: var(--ink-muted);
+  font-size: 0.9rem; color: var(--ink-muted);
   transition: transform 0.6s var(--ease), color 0.4s var(--ease);
 }
 .follow__item:hover .follow__arrow { transform: translate(4px, -4px); color: var(--ink); }
 
 @media (max-width: 960px) {
   .follow__head { grid-template-columns: 1fr; gap: 28px; }
-  .follow__list { grid-template-columns: 1fr; }
+  .follow__list { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 560px) {
   .nav__overlay { padding-top: calc(var(--nav-h) + 24px); }
   .nav__overlay-links .nav__link { font-size: 1.6rem; padding: 14px 0; gap: 14px; }
-  .follow__item { grid-template-columns: 32px 1fr auto; gap: 12px; padding: 16px 0; }
-  .follow__num { display: none; }
-  .follow__icon { width: 32px; height: 32px; }
-  .follow__icon svg { width: 14px; height: 14px; }
-  .follow__name { font-size: 1.3rem; }
-  .follow__handle { font-size: 0.6rem; }
-  .follow__arrow { font-size: 1rem; }
+  .follow { padding: 72px 0; }
+  .follow__head { gap: 16px; margin-bottom: 32px; }
+  .follow__head .display-2 { font-size: 2.2rem; }
+  .follow__lead { font-size: 1rem; }
+  .follow__list { grid-template-columns: 1fr 1fr; column-gap: 16px; }
+  .follow__item { grid-template-columns: 26px 1fr; gap: 10px; padding: 12px 0; }
+  .follow__handle, .follow__arrow { display: none; }
+  .follow__icon { width: 26px; height: 26px; }
+  .follow__icon svg { width: 12px; height: 12px; }
+  .follow__name { font-size: 1.1rem; }
   .footer__name { font-size: 2.1rem; }
-  .follow__note { display: none; }
 }
 
 /* ---------- Footer ---------- */
