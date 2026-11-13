@@ -36,6 +36,9 @@ html.motion .hero__title .line:nth-child(3) > span { animation-delay: 0.16s; }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: 20px 40px; margin-top: 36px; }
 
 .hero__image { margin-top: clamp(0px, 3vw, 40px); }
+/* Zoom in on the portrait, centred on her face, so less of the car shows. */
+.hero__image img, html.motion .hero__image.reveal--image.is-in img { transform: scale(1.3); transform-origin: 26% 46%; }
+html.motion .hero__image.reveal--image img { transform: scale(1.38); transform-origin: 26% 46%; }
 .hero__caption {
   display: flex; justify-content: space-between; gap: 16px; margin: 16px 0 0;
   font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted);
@@ -293,7 +296,9 @@ html.motion .dimensions__cue-arrow { animation: cue-bob 2.2s var(--ease) infinit
   .hero__visual { grid-column: 1 / -1; margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter)); }
   .hero__title .line--indent { padding-left: 0.6em; }
   .book__cover { max-width: 230px; }
-  .writer__photo { max-width: none; }
+  /* Phones: the writing photo spans the full width of the screen, edge to edge. */
+  .writer__photo { max-width: none; margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter)); }
+  .writer__photo figcaption { padding: 0 var(--gutter); }
   .letters__item { padding-right: 0; }
   .letters__arrow { display: none; }
   .videos__list { gap: 32px; }

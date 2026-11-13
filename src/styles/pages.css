@@ -133,4 +133,12 @@ html.is-studio, html.is-studio body, .page--studio { background: var(--studio); 
 @media (max-width: 560px) {
   /* Phones: a smaller, centred book cover. */
   .writing__cover { max-width: 230px; width: 100%; margin: 0 auto; }
+  /* Phones: a lower, wider latest-letter card with smaller type. */
+  .feature { padding: 36px 0; }
+  .feature__body { padding: 30px 22px; outline-offset: -8px; }
+  .feature__envelope { width: 34px; margin-bottom: 12px; }
+  .feature__label { margin-bottom: 16px; }
+  .feature .journal__meta { margin-bottom: 14px; gap: 18px; }
+  .feature__title { font-size: 1.85rem; margin-bottom: 14px; }
+  .feature__excerpt { font-size: 1.1rem; margin-bottom: 22px; }
 }

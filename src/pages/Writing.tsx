@@ -9,8 +9,8 @@ import { Reveal } from '../components/Reveal';
 
 export default function Writing() {
   usePageMeta('Writing', 'The Becoming Letter and selected writing by Awuraama Dadson, on personal development, wealth mindset, self-concept and intentional living.');
-  // Show the six newest letters (the featured one plus five in the archive); the rest live on Substack.
-  const [latest, ...rest] = useLetters().slice(0, 6);
+  // The newest letter is featured, with the next three below it; the rest live on Substack.
+  const [latest, ...rest] = useLetters().slice(0, 4);
 
   return (
     <div className="writing">
