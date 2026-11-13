@@ -5,6 +5,7 @@
 export const site = {
   name: 'Awuraama Dadson',
   statement: 'Building, creating and becoming.',
+  roles: 'Engineer, Author, Writer, Creator & Entrepreneur',
   description:
     'Engineer, author, writer, creator and entrepreneur, interested in ideas, creativity, personal growth and intentional living.',
 

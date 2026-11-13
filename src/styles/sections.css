@@ -72,9 +72,6 @@ html.motion .hero__title .line:nth-child(3) > span { animation-delay: 0.16s; }
   border: 1px solid var(--rule); pointer-events: none;
 }
 .dimensions__portrait .frame { box-shadow: 0 50px 90px -50px rgba(43, 34, 29, 0.55); }
-.dimensions__portrait figcaption {
-  margin-top: 40px; font-family: var(--serif); font-style: italic; font-size: 1.05rem; color: var(--ink-muted);
-}
 .dimensions__cue {
   display: inline-flex; align-items: center; gap: 12px; margin-top: 28px;
   font-size: 0.66rem; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase;

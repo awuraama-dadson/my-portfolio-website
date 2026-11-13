@@ -31,7 +31,7 @@ export function Dimensions() {
           </a>
         </Reveal>
         </div>
-        <figure className="dimensions__portrait">
+        <div className="dimensions__portrait">
           <ImageFrame
             src="/images/about-828.webp"
             srcSet="/images/about-600.webp 600w, /images/about-828.webp 828w"
@@ -40,8 +40,7 @@ export function Dimensions() {
             ratio="3 / 4"
             delay={200}
           />
-          <figcaption>Curious by nature, always becoming.</figcaption>
-        </figure>
+        </div>
       </div>
 
       <Engineer />
