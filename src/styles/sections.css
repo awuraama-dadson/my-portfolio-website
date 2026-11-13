@@ -62,8 +62,18 @@ html.motion .hero__title .line:nth-child(3) > span { animation-delay: 0.16s; }
 /* ---------- Dimensions ---------- */
 .dimensions { padding-top: var(--section); }
 .dimensions__head {
-  display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: end;
+  display: grid; grid-template-columns: 1.35fr 1fr; gap: clamp(48px, 7vw, 110px); align-items: center;
   margin-bottom: clamp(64px, 9vw, 130px);
+}
+.dimensions__intro .lead { margin-top: 32px; max-width: 30em; }
+.dimensions__portrait { position: relative; margin: 0; max-width: 420px; justify-self: end; width: 100%; }
+.dimensions__portrait::before {
+  content: ""; position: absolute; inset: 22px -22px -22px 22px;
+  border: 1px solid var(--rule); pointer-events: none;
+}
+.dimensions__portrait .frame { box-shadow: 0 50px 90px -50px rgba(43, 34, 29, 0.55); }
+.dimensions__portrait figcaption {
+  margin-top: 40px; font-family: var(--serif); font-style: italic; font-size: 1.05rem; color: var(--ink-muted);
 }
 .dimensions__cue {
   display: inline-flex; align-items: center; gap: 12px; margin-top: 28px;
@@ -263,6 +273,8 @@ html.motion .soon__dot { animation: soon-pulse 2.4s var(--ease) infinite; }
   .hero__foot { display: none; }
 
   .dimensions__head, .writer__head { grid-template-columns: 1fr; gap: 24px; }
+  .dimensions__head { gap: 56px; }
+  .dimensions__portrait { justify-self: start; max-width: 380px; }
   .dim__text, .dim__collage, .videos { grid-column: 1 / -1; }
   .dim__collage, .videos { margin-top: 56px; }
 
@@ -285,6 +297,8 @@ html.motion .soon__dot { animation: soon-pulse 2.4s var(--ease) infinite; }
   .contact__intro { position: static; }
 }
 @media (max-width: 560px) {
+  .dimensions__portrait { max-width: calc(100% - 14px); }
+  .dimensions__portrait::before { inset: 14px -14px -14px 14px; }
   /* Phones: the portrait spans the full width of the screen, edge to edge. */
   .hero__visual { grid-column: 1 / -1; margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter)); }
   .hero__title .line--indent { padding-left: 0.6em; }

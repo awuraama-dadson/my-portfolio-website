@@ -13,6 +13,7 @@ export function Dimensions() {
   return (
     <section id="work" className="dimensions" aria-labelledby="work-title">
       <div className="container dimensions__head">
+        <div className="dimensions__intro">
         <Reveal>
           <Eyebrow>A little about what I do</Eyebrow>
           <h2 id="work-title" className="display-2">
@@ -29,6 +30,18 @@ export function Dimensions() {
             <span className="dimensions__cue-arrow" aria-hidden="true">↓</span>
           </a>
         </Reveal>
+        </div>
+        <figure className="dimensions__portrait">
+          <ImageFrame
+            src="/images/about-828.webp"
+            srcSet="/images/about-600.webp 600w, /images/about-828.webp 828w"
+            sizes="(max-width: 900px) 80vw, 30vw"
+            alt="Awuraama Dadson smiling in a blue dress"
+            ratio="3 / 4"
+            delay={200}
+          />
+          <figcaption>Curious by nature, always becoming.</figcaption>
+        </figure>
       </div>
 
       <Engineer />
