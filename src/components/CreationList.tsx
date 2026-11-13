@@ -35,24 +35,23 @@ export function CreationList({ items }: { items: Creation[] }) {
   );
 }
 
-/** Stands in for a screenshot while a piece is still being built. */
+/** Stands in for a screenshot while a piece is still being built: a hairline sketch of the app on paper. */
 function ComingSoonCard({ pillars }: { pillars: string[] }) {
   return (
     <Reveal variant="image" className="frame soon" style={{ aspectRatio: '4 / 3' }}>
-      <div className="soon__inner" role="img" aria-label={`In the works: ${pillars.join(', ')}`}>
-        <p className="soon__status" aria-hidden="true">
-          <span className="soon__dot" />
-          Currently building
-        </p>
-        <p className="soon__title" aria-hidden="true">
-          Untitled, <em>for now.</em>
-        </p>
-        <ul className="soon__pillars" aria-hidden="true">
+      <div className="soon__inner" role="img" aria-label={`A sketch of the app in the works, bringing together ${pillars.join(', ')}`}>
+        <p className="soon__note soon__note--top" aria-hidden="true">In the works</p>
+        <div className="soon__phone" aria-hidden="true">
+          <span className="soon__line soon__line--short" />
+          <span className="soon__line" />
           {pillars.map((p) => (
-            <li key={p}>{p}</li>
+            <span key={p} className="soon__row">
+              <span className="soon__box" />
+              <span className="soon__label">{p}</span>
+            </span>
           ))}
-        </ul>
-        <p className="soon__foot" aria-hidden="true">All in one · Coming soon</p>
+          <span className="soon__line soon__line--mid" />
+        </div>
       </div>
     </Reveal>
   );

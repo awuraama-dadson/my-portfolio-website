@@ -52,14 +52,14 @@
   padding-top: calc(var(--nav-h) + 40px);
   overflow-y: auto;
 }
-.nav--dark .nav__overlay { background: #1F1B18; color: var(--on-dark); }
+.nav--dark .nav__overlay { background: var(--studio); color: var(--on-dark); }
 .nav__overlay[hidden] { display: none; }
 html.motion .nav__overlay:not([hidden]) { animation: page-in 0.5s var(--ease) both; }
 .nav__overlay-links { display: flex; flex-direction: column; }
 .nav__overlay-links .nav__link {
   display: flex; align-items: baseline; gap: 18px;
   padding: 18px 0; border-bottom: 1px solid var(--rule);
-  font-family: var(--serif); font-weight: 300; font-size: clamp(2.2rem, 9vw, 3.2rem);
+  font-family: var(--serif); font-weight: 300; font-size: clamp(1.8rem, 7vw, 2.6rem);
   letter-spacing: -0.01em; text-transform: none; opacity: 1;
 }
 .nav--dark .nav__overlay-links .nav__link { border-color: var(--on-dark-rule); }
@@ -178,7 +178,7 @@ html.motion .nav__overlay:not([hidden]) { animation: page-in 0.5s var(--ease) bo
 }
 @media (max-width: 560px) {
   .nav__overlay { padding-top: calc(var(--nav-h) + 24px); }
-  .nav__overlay-links .nav__link { font-size: 1.6rem; padding: 14px 0; gap: 14px; }
+  .nav__overlay-links .nav__link { font-size: 1.35rem; padding: 12px 0; gap: 14px; }
   .follow { padding: 72px 0; }
   .follow__head { gap: 16px; margin-bottom: 32px; }
   .follow__head .display-2 { font-size: 2.2rem; }

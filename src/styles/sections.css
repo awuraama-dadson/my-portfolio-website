@@ -207,29 +207,25 @@ html.motion .dimensions__cue-arrow { animation: cue-bob 2.2s var(--ease) infinit
 .piece__name { margin: 0 0 14px; font-family: var(--serif); font-weight: 400; font-size: clamp(1.9rem, 2.8vw, 2.6rem); line-height: 1.05; }
 .piece__desc { margin: 0 0 28px; color: var(--ink-soft); line-height: 1.8; max-width: 30em; }
 
-/* An "in the works" piece: a dark teaser card in place of a screenshot. */
-.soon { background: var(--espresso); color: var(--on-dark); }
-.soon__inner {
-  position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between;
-  padding: clamp(22px, 3vw, 36px);
-  background: radial-gradient(90% 80% at 80% 10%, rgba(201, 174, 140, 0.22) 0%, rgba(201, 174, 140, 0) 60%);
+/* An "in the works" piece: a hairline sketch of the app on sand paper, in place of a screenshot. */
+.soon { background: var(--sand); }
+.soon__inner { position: absolute; inset: 0; display: grid; place-items: center; }
+.soon__phone {
+  height: 78%; aspect-ratio: 9 / 18; padding: 12% 9% 0; border: 1px solid var(--taupe); border-radius: 22px;
+  display: flex; flex-direction: column; gap: 9%; background: var(--ivory);
+  box-shadow: 0 30px 50px -36px rgba(43, 34, 29, 0.45);
 }
-.soon__inner::after { content: ''; position: absolute; inset: 14px; border: 1px solid var(--on-dark-rule); pointer-events: none; }
-.soon__status {
-  margin: 0; display: flex; align-items: center; gap: 10px;
-  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-light);
+.soon__line { display: block; height: 4px; border-radius: 2px; background: var(--beige); }
+.soon__line--short { width: 45%; height: 6px; background: var(--taupe); opacity: 0.55; }
+.soon__line--mid { width: 70%; }
+.soon__row { display: flex; align-items: center; gap: 7px; min-width: 0; }
+.soon__box { flex: none; width: 9px; height: 9px; border: 1px solid var(--taupe); border-radius: 2px; }
+.soon__label { font-family: var(--serif); font-style: italic; font-size: clamp(0.62rem, 0.9vw, 0.82rem); line-height: 1.1; color: var(--ink-soft); }
+.soon__note { position: absolute; margin: 0; }
+.soon__note--top {
+  top: clamp(16px, 2.4vw, 26px); left: clamp(18px, 2.6vw, 30px);
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent);
 }
-.soon__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-light); }
-html.motion .soon__dot { animation: soon-pulse 2.4s var(--ease) infinite; }
-@keyframes soon-pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(201, 174, 140, 0.5); } 50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(201, 174, 140, 0); } }
-.soon__title { margin: 0; font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 3.6vw, 3.2rem); line-height: 1; }
-.soon__title em { color: var(--accent-light); }
-.soon__pillars { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-.soon__pillars li {
-  padding: 6px 12px; border: 1px solid rgba(241, 234, 224, 0.28); border-radius: 999px;
-  font-size: 0.62rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--on-dark-soft);
-}
-.soon__foot { margin: 0; font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--on-dark-muted); }
 .piece--soon .piece__kind { color: var(--accent); }
 
 /* ---------- Speaking ---------- */
@@ -303,11 +299,7 @@ html.motion .soon__dot { animation: soon-pulse 2.4s var(--ease) infinite; }
   .videos__list { gap: 32px; }
   .video, .video:nth-child(2) { width: 100%; max-width: 300px; justify-self: center; }
   .piece__image { max-width: 300px; margin: 0 auto; }
-  .soon__inner { padding: 22px; }
-  .soon__title { font-size: 1.6rem; }
-  .soon__pillars { gap: 6px; }
-  .soon__pillars li { padding: 4px 9px; font-size: 0.54rem; }
-  .soon__foot { font-size: 0.9rem; }
+  .soon__phone { border-radius: 16px; }
   .speaking__list { flex-direction: column; align-items: center; gap: 12px; font-size: 1.2rem; }
   .speaking__list li + li::before { display: none; }
 }
