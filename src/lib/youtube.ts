@@ -7,6 +7,16 @@ export const YOUTUBE_CHANNEL_ID = 'UCPTYK5Q8rhrrSu-j2sg-Mnw'; // youtube.com/@Aw
 // YouTube's built-in "long-form uploads" playlist: the channel ID with its "UC" prefix swapped for "UULF".
 const LONG_FORM_PLAYLIST = 'UULF' + YOUTUBE_CHANNEL_ID.slice(2);
 export const YOUTUBE_FEED = `https://www.youtube.com/feeds/videos.xml?playlist_id=${LONG_FORM_PLAYLIST}`;
+// Backup: the whole-channel feed (includes Shorts, which are filtered out below).
+const CHANNEL_FEED = `https://www.youtube.com/feeds/videos.xml?channel_id=${YOUTUBE_CHANNEL_ID}`;
+
+// YouTube sometimes turns away requests that don't look like a browser, so send ordinary browser headers.
+const HEADERS = {
+  Accept: 'application/atom+xml, application/xml;q=0.9, */*;q=0.8',
+  'Accept-Language': 'en-GB,en;q=0.9',
+  'User-Agent':
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36',
+};
 
 export interface Video {
   id: string;
@@ -46,14 +56,26 @@ export function parseYouTubeFeed(xml: string): Video[] {
         fallback: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
       };
     })
-    .filter((v) => v.id && v.title);
+    .filter((v) => v.id && v.title && !v.url.includes('/shorts/'));
 }
 
-export async function fetchYouTubeVideos(): Promise<Video[]> {
-  const res = await fetch(YOUTUBE_FEED, {
-    headers: { Accept: 'application/atom+xml, application/xml' },
-    signal: AbortSignal.timeout(10_000),
-  });
+async function readFeed(url: string): Promise<Video[]> {
+  const res = await fetch(url, { headers: HEADERS, signal: AbortSignal.timeout(8_000) });
   if (!res.ok) throw new Error(`YouTube feed responded ${res.status}`);
-  return parseYouTubeFeed(await res.text());
+  const videos = parseYouTubeFeed(await res.text());
+  if (!videos.length) throw new Error('YouTube feed had no videos');
+  return videos;
+}
+
+/** Tries the long-form feed twice, then the channel feed, so a single refusal from YouTube doesn't empty the section. */
+export async function fetchYouTubeVideos(): Promise<Video[]> {
+  let lastError: unknown;
+  for (const url of [YOUTUBE_FEED, YOUTUBE_FEED, CHANNEL_FEED]) {
+    try {
+      return await readFeed(url);
+    } catch (err) {
+      lastError = err;
+    }
+  }
+  throw lastError;
 }

@@ -21,6 +21,7 @@ npm run preview    # serve the production build
 | Email, social links, book links, motion on/off | `src/content/site.ts` |
 | Photographs (hero) | put files in `public/images/`, then set paths in `photos` in `src/content/site.ts` |
 | The Becoming Letter articles | **Automatic.** New Substack posts appear on their own (homepage shows the newest 3). Optionally add a post to `src/content/letters.ts` to give it a theme label |
+| YouTube videos | **Automatic.** New long-form uploads appear on their own within about 15 minutes (Shorts are left out). A saved copy in `src/content/videos.ts` is refreshed every hour by the "Update videos" GitHub Action (or `npm run update-videos`), so the section still shows the latest videos if YouTube can't be reached |
 | "More From Me" collection | `src/content/creations.ts`: add an object to add a piece. They all appear on the `/more` page |
 | Tech portfolio projects, skills, experience | `src/content/portfolio.ts` |
 | Contact form enquiry types and their extra fields | `src/content/contact.ts` |
