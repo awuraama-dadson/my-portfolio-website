@@ -20,7 +20,7 @@ export const site = {
     instagram: 'https://www.instagram.com/the_dadsonnn/',
     youtube: 'https://www.youtube.com/@AwuraamaDadson',
     tiktok: 'https://www.tiktok.com/@awuraama.dadson',
-    substack: 'https://sheshares.substack.com/',
+    substack: 'https://awuraamadadson.substack.com/',
     linkedin: 'https://www.linkedin.com/in/awuraama-dadson-419833223',
     goodreads: 'https://www.goodreads.com/user/show/203275454-awuraama-dadson',
     github: 'https://github.com/awuraama-dadson',

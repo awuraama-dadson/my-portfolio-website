@@ -3,7 +3,7 @@
  * Shared by the Vercel function (api/letters.ts) and the local dev server (vite.config.ts),
  * so it must not touch the DOM.
  */
-export const SUBSTACK_FEED = 'https://sheshares.substack.com/feed';
+export const SUBSTACK_FEED = 'https://awuraamadadson.substack.com/feed';
 
 export interface FeedLetter {
   title: string;

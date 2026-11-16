@@ -1,5 +1,5 @@
 /**
- * Saved letters from The Becoming Letter (https://sheshares.substack.com). Newest first.
+ * Saved letters from The Becoming Letter (https://awuraamadadson.substack.com). Newest first.
  * New letters appear on the site automatically from Substack (see src/hooks/useLetters.ts).
  * This list is the instant-load fallback, and where you set each letter's theme label.
  */
@@ -11,7 +11,7 @@ export interface Letter {
   theme: string;
 }
 
-const base = 'https://sheshares.substack.com/p/';
+const base = 'https://awuraamadadson.substack.com/p/';
 
 export const letters: Letter[] = [
   {
