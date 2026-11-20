@@ -3,6 +3,14 @@ import type { Video } from '../lib/youtube';
 
 export const savedVideos: Video[] = [
   {
+    "id": "31xIiYm2AZ0",
+    "title": "how to stop being a victim | mindset shifts to take control of your life & cut out the BS!",
+    "url": "https://www.youtube.com/watch?v=31xIiYm2AZ0",
+    "published": "2026-11-20T00:30:17+00:00",
+    "thumbnail": "https://i.ytimg.com/vi/31xIiYm2AZ0/hq720.jpg",
+    "fallback": "https://i.ytimg.com/vi/31xIiYm2AZ0/hqdefault.jpg"
+  },
+  {
     "id": "07hM7ztELqM",
     "title": "How to Romanticise Your Life in Your Becoming Era - Practical Tips",
     "url": "https://www.youtube.com/watch?v=07hM7ztELqM",
@@ -25,13 +33,5 @@ export const savedVideos: Video[] = [
     "published": "2026-10-30T00:45:35+00:00",
     "thumbnail": "https://i.ytimg.com/vi/GyAxPHJynR4/hq720.jpg",
     "fallback": "https://i.ytimg.com/vi/GyAxPHJynR4/hqdefault.jpg"
-  },
-  {
-    "id": "doXR6X18MP8",
-    "title": "3 Hills I'm Willing to Die On About Life, Money & Success",
-    "url": "https://www.youtube.com/watch?v=doXR6X18MP8",
-    "published": "2026-10-23T02:00:23+00:00",
-    "thumbnail": "https://i.ytimg.com/vi/doXR6X18MP8/hq720.jpg",
-    "fallback": "https://i.ytimg.com/vi/doXR6X18MP8/hqdefault.jpg"
   }
 ];
