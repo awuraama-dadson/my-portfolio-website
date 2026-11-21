@@ -4,7 +4,7 @@ import type { Video } from '../lib/youtube';
 export const savedVideos: Video[] = [
   {
     "id": "31xIiYm2AZ0",
-    "title": "how to stop being a victim | mindset shifts to take control of your life & cut out the BS!",
+    "title": "how to stop being a victim | mindset shifts to take control of your life",
     "url": "https://www.youtube.com/watch?v=31xIiYm2AZ0",
     "published": "2026-11-20T00:30:17+00:00",
     "thumbnail": "https://i.ytimg.com/vi/31xIiYm2AZ0/hq720.jpg",
