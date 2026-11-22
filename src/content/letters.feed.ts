@@ -3,6 +3,12 @@ import type { FeedLetter } from '../lib/substack';
 
 export const feedLetters: FeedLetter[] = [
   {
+    "title": "Every Choice Comes at a Cost. Here's How to Choose Well.",
+    "excerpt": "A Little More Thought Could Change Your Life.",
+    "date": "2026-11-19",
+    "url": "https://awuraamadadson.substack.com/p/every-choice-comes-at-a-cost-heres"
+  },
+  {
     "title": "The Psychology Of Lucky People",
     "excerpt": "Luck isn’t random, it’s engineered",
     "date": "2026-11-12",
