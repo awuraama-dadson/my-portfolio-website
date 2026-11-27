@@ -3,6 +3,14 @@ import type { Video } from '../lib/youtube';
 
 export const savedVideos: Video[] = [
   {
+    "id": "bBwLW1tY53k",
+    "title": "Want to Be Luckier? Start Doing These 4 Things",
+    "url": "https://www.youtube.com/watch?v=bBwLW1tY53k",
+    "published": "2026-11-27T01:00:35+00:00",
+    "thumbnail": "https://i.ytimg.com/vi/bBwLW1tY53k/hq720.jpg",
+    "fallback": "https://i.ytimg.com/vi/bBwLW1tY53k/hqdefault.jpg"
+  },
+  {
     "id": "31xIiYm2AZ0",
     "title": "how to stop being a victim | mindset shifts to take control of your life",
     "url": "https://www.youtube.com/watch?v=31xIiYm2AZ0",
@@ -25,13 +33,5 @@ export const savedVideos: Video[] = [
     "published": "2026-11-06T00:00:07+00:00",
     "thumbnail": "https://i.ytimg.com/vi/Wt5R0P-chqI/hq720.jpg",
     "fallback": "https://i.ytimg.com/vi/Wt5R0P-chqI/hqdefault.jpg"
-  },
-  {
-    "id": "GyAxPHJynR4",
-    "title": "What the LAW OF ASSUMPTION is & how to use it TO WIN AT LIFE | law of assumption 101",
-    "url": "https://www.youtube.com/watch?v=GyAxPHJynR4",
-    "published": "2026-10-30T00:45:35+00:00",
-    "thumbnail": "https://i.ytimg.com/vi/GyAxPHJynR4/hq720.jpg",
-    "fallback": "https://i.ytimg.com/vi/GyAxPHJynR4/hqdefault.jpg"
   }
 ];
