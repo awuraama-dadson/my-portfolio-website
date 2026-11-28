@@ -3,6 +3,12 @@ import type { FeedLetter } from '../lib/substack';
 
 export const feedLetters: FeedLetter[] = [
   {
+    "title": "You've Been Lied to About Manifestation.",
+    "excerpt": "Here's What You Need to Know.",
+    "date": "2026-11-27",
+    "url": "https://awuraamadadson.substack.com/p/youve-been-lied-to-about-manifestation"
+  },
+  {
     "title": "Every Choice Comes at a Cost. Here's How to Choose Well.",
     "excerpt": "A Little More Thought Could Change Your Life.",
     "date": "2026-11-19",
